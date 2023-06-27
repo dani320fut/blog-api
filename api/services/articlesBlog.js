@@ -15,13 +15,22 @@ const formatArticles = (articlesArray) => {
           properties?.description[properties?.description?.type][0]?.text
             ?.content,
         area: properties?.area[properties?.area?.type][0]?.text?.content,
-        symptoms:
-          properties?.symptoms[properties?.symptoms?.type][0]?.text?.content,
-        tags: properties?.Tags[properties?.Tags?.type],
+        symptoms: properties?.symptoms[properties?.symptoms?.type]?.map(
+          (symptom) => symptom.name
+        ),
+        tips: properties?.tips[properties?.tips?.type]?.map((tip) => tip.name),
+        tags: properties?.Tags[properties?.Tags?.type]?.map((tag) => tag.name),
         pathIdentification:
           properties?.pathIdentification[
             properties?.pathIdentification?.type
           ][0]?.text?.content,
+        name: properties?.name[properties?.name?.type][0]?.text?.content,
+        image: properties?.image[properties?.image?.type][0]?.file?.url,
+        // headache artigo principal
+        isMainArticle:
+          properties?.pathIdentification[
+            properties?.pathIdentification?.type
+          ][0]?.text?.content === "headache",
       };
     }) ?? []
   );
