@@ -3,6 +3,7 @@ const {
   getArticlesBySearchService,
   getArticlesByPathIdentificationService,
 } = require("../services/articlesBlog.js");
+const { teste } = require("../services/notion.js");
 
 const getAllArticles = async (req, res) => {
   const { pageSize = 10 } = req.query;
