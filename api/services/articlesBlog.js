@@ -2,7 +2,7 @@ const {
   getAllArticlesNotionService,
   getArticlesNotionBySearchService,
   getArticlesNotionByPathIdentificationService,
-} = require("../services/notion");
+} = require("./notion");
 
 const transformArray = (array, size) => {
   const result = [];
