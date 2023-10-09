@@ -1,4 +1,8 @@
-const { teste } = require("../services/notion.js");
+const {
+  getAllArticlesNotionService,
+  getArticlesNotionBySearchService,
+  getArticlesNotionByPathIdentificationService,
+} = require("../services/notion.js");
 
 const transformArray = (array, size) => {
   const result = [];
