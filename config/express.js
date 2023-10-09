@@ -11,7 +11,7 @@ module.exports = () => {
 
   app.use(bodyParser.json());
 
-  consign({ cwd: "api" }).then("controllers", "routes").into(app);
+  consign({ cwd: "api" }).then("controllers").then("routes").into(app);
 
   require("../api/routes/articlesBlog")(app);
 
