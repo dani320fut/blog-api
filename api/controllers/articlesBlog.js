@@ -2,7 +2,7 @@ const {
   getAllArticlesService,
   getArticlesBySearchService,
   getArticlesByPathIdentificationService,
-} = require("../services/articlesBlog");
+} = require("../services/articlesBlog.js");
 
 const getAllArticles = async (req, res) => {
   const { pageSize = 10 } = req.query;
