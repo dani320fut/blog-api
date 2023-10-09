@@ -3,6 +3,10 @@ const bodyParser = require("body-parser");
 const config = require("config");
 const consign = require("consign");
 const cors = require("cors");
+console.log(
+  "🚀 ~ file: express.js:4 ~ config:",
+  config.get("server.port" || 8080)
+);
 
 module.exports = () => {
   const app = express();
