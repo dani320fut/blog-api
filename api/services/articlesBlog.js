@@ -45,8 +45,7 @@ const formatArticles = (articlesArray) => {
 };
 
 const getAllArticles = async (pageSize, page) => {
-  // const { articles = [] } = await getAllArticlesNotionService(pageSize);
-  const articles = [];
+  const { articles = [] } = await getAllArticlesNotionService(pageSize);
   const articlesFormatted = formatArticles(articles);
 
   return articlesFormatted;
@@ -57,10 +56,9 @@ const getArticlesBySearch = async (searchText, pageSize, page) => {
   let foundedBySeach = false;
 
   if (searchText) {
-    // const { articles = [] } = await getArticlesNotionBySearchService(
-    //   searchText
-    // );
-    const articles = [];
+    const { articles = [] } = await getArticlesNotionBySearchService(
+      searchText
+    );
 
     foundedBySeach = articles?.length > 0;
 
@@ -77,10 +75,9 @@ const getArticlesBySearch = async (searchText, pageSize, page) => {
 };
 
 const getArticlesByPathIdentification = async (path) => {
-  // const { articles = [] } = await getArticlesNotionByPathIdentificationService(
-  //   path
-  // );
-  const articles = [];
+  const { articles = [] } = await getArticlesNotionByPathIdentificationService(
+    path
+  );
 
   const articlesFormatted = formatArticles(articles);
 

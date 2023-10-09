@@ -1,5 +1,4 @@
-// const { Client } = require("@notionhq/client");
-
+const { Client } = require("@notionhq/client");
 require("dotenv").config();
 
 const auth = process.env.NOTION_SECRET;
@@ -7,9 +6,9 @@ const database_id = process.env.DATABASE_ID;
 
 const getAllArticlesNotion = async (pageSize) => {
   try {
-    // const notion = new Client({
-    //   auth,
-    // });
+    const notion = new Client({
+      auth,
+    });
 
     const fetchPages = await notion.databases.query({
       database_id,
@@ -34,9 +33,9 @@ const getAllArticlesNotion = async (pageSize) => {
 
 const getArticlesBySearch = async (searchText) => {
   try {
-    // const notion = new Client({
-    //   auth,
-    // });
+    const notion = new Client({
+      auth,
+    });
 
     const fetchPages = await notion.databases.query({
       database_id,
@@ -70,9 +69,9 @@ const getArticlesBySearch = async (searchText) => {
 
 const getArticlesByPathIdentification = async (path) => {
   try {
-    // const notion = new Client({
-    //   auth,
-    // });
+    const notion = new Client({
+      auth,
+    });
 
     const fetchPages = await notion.databases.query({
       database_id,
