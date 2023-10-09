@@ -5,13 +5,21 @@ const {
 } = require("../services/articlesBlog");
 
 const getAllArticles = async (req, res) => {
-  const articles = await getAllArticlesService();
+  const { pageSize = 10 } = req.query;
+
+  const articles = await getAllArticlesService(Number(pageSize));
 
   return res.status(200).json(articles);
 };
 
 const getArticlesBySearch = async (req, res) => {
-  const articles = await getArticlesBySearchService(req.query.search);
+  const { search = "", pageSize = 10, page = 1 } = req.query;
+
+  const articles = await getArticlesBySearchService(
+    search,
+    Number(pageSize),
+    Number(page)
+  );
 
   return res.status(200).json(articles);
 };

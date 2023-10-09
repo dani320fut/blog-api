@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "19.8.1"
+  },
   "dependencies": {
     "@notionhq/client": "^2.2.5",
     "body-parser": "^1.20.2",

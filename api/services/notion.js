@@ -4,7 +4,7 @@ require("dotenv").config();
 const auth = process.env.NOTION_SECRET;
 const database_id = process.env.DATABASE_ID;
 
-const getAllArticlesNotion = async () => {
+const getAllArticlesNotion = async (pageSize) => {
   try {
     const notion = new Client({
       auth,
@@ -12,6 +12,7 @@ const getAllArticlesNotion = async () => {
 
     const fetchPages = await notion.databases.query({
       database_id,
+      page_size: pageSize,
       filter: {
         property: "status",
         status: {
@@ -20,7 +21,11 @@ const getAllArticlesNotion = async () => {
       },
     });
 
-    return { success: true, error: null, articles: fetchPages?.results };
+    return {
+      success: true,
+      error: null,
+      articles: fetchPages?.results,
+    };
   } catch (err) {
     return { success: false, error: err, articles: [] };
   }
@@ -52,7 +57,11 @@ const getArticlesBySearch = async (searchText) => {
       },
     });
 
-    return { success: true, error: null, articles: fetchPages?.results };
+    return {
+      success: true,
+      error: null,
+      articles: fetchPages?.results,
+    };
   } catch (err) {
     return { success: false, error: err, articles: [] };
   }
@@ -84,7 +93,11 @@ const getArticlesByPathIdentification = async (path) => {
       },
     });
 
-    return { success: true, error: null, articles: fetchPages?.results };
+    return {
+      success: true,
+      error: null,
+      articles: fetchPages?.results,
+    };
   } catch (err) {
     return { success: false, error: err, articles: [] };
   }

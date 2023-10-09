@@ -4,6 +4,14 @@ const {
   getArticlesNotionByPathIdentificationService,
 } = require("../services/notion");
 
+const transformArray = (array, size) => {
+  const result = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+};
+
 const formatArticles = (articlesArray) => {
   return (
     articlesArray?.map(({ properties }) => {
@@ -36,20 +44,35 @@ const formatArticles = (articlesArray) => {
   );
 };
 
-const getAllArticles = async () => {
-  const { articles = [] } = await getAllArticlesNotionService();
+const getAllArticles = async (pageSize, page) => {
+  const { articles = [] } = await getAllArticlesNotionService(pageSize);
 
   const articlesFormatted = formatArticles(articles);
 
   return articlesFormatted;
 };
 
-const getArticlesBySearch = async (searchText) => {
-  const { articles = [] } = await getArticlesNotionBySearchService(searchText);
+const getArticlesBySearch = async (searchText, pageSize, page) => {
+  let articlesFormatted = [];
+  let foundedBySeach = false;
 
-  const articlesFormatted = formatArticles(articles);
+  if (searchText) {
+    const { articles = [] } = await getArticlesNotionBySearchService(
+      searchText
+    );
 
-  return articlesFormatted;
+    foundedBySeach = articles?.length > 0;
+
+    articlesFormatted = foundedBySeach
+      ? formatArticles(articles)
+      : await getAllArticles();
+  } else {
+    articlesFormatted = await getAllArticles();
+  }
+
+  const articlesArray = await transformArray(articlesFormatted, pageSize);
+
+  return { foundedBySeach: foundedBySeach, articles: articlesArray };
 };
 
 const getArticlesByPathIdentification = async (path) => {
@@ -59,7 +82,7 @@ const getArticlesByPathIdentification = async (path) => {
 
   const articlesFormatted = formatArticles(articles);
 
-  return articlesFormatted;
+  return articlesFormatted[0];
 };
 
 module.exports = {
