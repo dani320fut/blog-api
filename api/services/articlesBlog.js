@@ -1,8 +1,8 @@
-const {
-  getAllArticlesNotionService,
-  getArticlesNotionBySearchService,
-  getArticlesNotionByPathIdentificationService,
-} = require("./teste");
+// const {
+//   getAllArticlesNotionService,
+//   getArticlesNotionBySearchService,
+//   getArticlesNotionByPathIdentificationService,
+// } = require("./teste");
 
 const transformArray = (array, size) => {
   const result = [];
@@ -45,8 +45,8 @@ const formatArticles = (articlesArray) => {
 };
 
 const getAllArticles = async (pageSize, page) => {
-  const { articles = [] } = await getAllArticlesNotionService(pageSize);
-
+  // const { articles = [] } = await getAllArticlesNotionService(pageSize);
+  const articles = [];
   const articlesFormatted = formatArticles(articles);
 
   return articlesFormatted;
@@ -57,9 +57,10 @@ const getArticlesBySearch = async (searchText, pageSize, page) => {
   let foundedBySeach = false;
 
   if (searchText) {
-    const { articles = [] } = await getArticlesNotionBySearchService(
-      searchText
-    );
+    // const { articles = [] } = await getArticlesNotionBySearchService(
+    //   searchText
+    // );
+    const articles = [];
 
     foundedBySeach = articles?.length > 0;
 
@@ -76,9 +77,10 @@ const getArticlesBySearch = async (searchText, pageSize, page) => {
 };
 
 const getArticlesByPathIdentification = async (path) => {
-  const { articles = [] } = await getArticlesNotionByPathIdentificationService(
-    path
-  );
+  // const { articles = [] } = await getArticlesNotionByPathIdentificationService(
+  //   path
+  // );
+  const articles = [];
 
   const articlesFormatted = formatArticles(articles);
 
