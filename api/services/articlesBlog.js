@@ -1,3 +1,5 @@
+const { teste } = require("../services/notion.js");
+
 const transformArray = (array, size) => {
   const result = [];
   for (let i = 0; i < array.length; i += size) {
