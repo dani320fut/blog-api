@@ -5,6 +5,7 @@ const {
 } = require("../services/articlesBlog.js");
 const { teste } = require("../services/notion.js");
 // teste
+// novo teste
 
 const getAllArticles = async (req, res) => {
   const { pageSize = 10 } = req.query;
